@@ -5,9 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories("com.example.repository")
-@EntityScan("com.example.pojo")
-@SpringBootApplication(scanBasePackages = "com.example")
+//Below two annotations are not required since POJO entity and Repositories exist in sub packages of class annotated with SpringBootApplication
+//@EnableJpaRepositories("com.example.repository")
+//@EntityScan("com.example.pojo")
+@SpringBootApplication
 public class NikhilSpringBootJdbcApplication {
 
 	public static void main(String[] args) {

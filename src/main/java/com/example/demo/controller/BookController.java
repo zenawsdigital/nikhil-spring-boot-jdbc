@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.book.exception.BookNotFoundException;
-import com.example.pojo.Book;
-import com.example.repository.BookRepository;
+import com.example.demo.exception.BookNotFoundException;
+import com.example.demo.pojo.Book;
+import com.example.demo.repository.BookRepository;
 
 @RestController
 @RequestMapping(path = "/api/books")
@@ -26,13 +26,14 @@ public class BookController {
 		return bookRepository.findAll().toString();
 	}
 	
-	@RequestMapping("/title/{bookTitle}")
-	public List findByTitle(@PathVariable String bookTitle) {
+	@RequestMapping(path = "/title/{bookTitle}"/* , produces = "application/json" */)
+	public List<Book> findByTitle(@PathVariable String bookTitle) {
 		return bookRepository.findByTitle(bookTitle);
 	}
 	
-	@RequestMapping("/{id}")
+	@RequestMapping(path = "/{id}", produces = "application/json")
 	public Book findById(@PathVariable Long id) throws BookNotFoundException {
+//		return new Book(1,"Test","TestAuthor");
 		return bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
 	}
 	
